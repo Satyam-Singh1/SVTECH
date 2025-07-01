@@ -70,16 +70,19 @@ const Footer = () => {
                 </div>
 
                 {/* Navigation */}
-                <nav className="flex flex-col items-center md:items-end gap-2">
+               <nav className="flex flex-col items-center md:items-end gap-2">
                     <div className="flex flex-wrap gap-5 mb-2">
                         {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                className="text-gray-700 font-semibold font-montserrat hover:text-green-700 transition"
-                            >
-                                {link.name}
-                            </a>
+                        <button
+                            key={link.name}
+                            onClick={() => {
+                            const targetId = link.href.replace('/', '')
+                            document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' })
+                            }}
+                            className="text-gray-700 font-semibold font-montserrat hover:text-green-700 transition"
+                        >
+                            {link.name}
+                        </button>
                         ))}
                     </div>
                     <span className="text-xs text-gray-400 font-lato">

@@ -10,34 +10,16 @@ import {
 
 const services = [
     {
-        name: "Consulting",
-        description: "Expert advice to guide your business decisions and growth.",
-        icon: LightBulbIcon,
-        color: "from-green-400 to-lime-400",
-    },
-    {
         name: "Website Development",
         description: "Modern, responsive websites tailored to your brand.",
         icon: GlobeAltIcon,
         color: "from-blue-400 to-cyan-400",
     },
     {
-        name: "Strategy Development",
-        description: "Data-driven strategies for sustainable success.",
-        icon: ChartBarIcon,
-        color: "from-yellow-400 to-orange-400",
-    },
-    {
         name: "Digital Transformation",
         description: "Upgrade your business with the latest digital solutions.",
         icon: DevicePhoneMobileIcon,
         color: "from-purple-400 to-indigo-400",
-    },
-    {
-        name: "Market Research",
-        description: "In-depth analysis to uncover new opportunities.",
-        icon: MagnifyingGlassIcon,
-        color: "from-pink-400 to-rose-400",
     },
     {
         name: "Branding and Design",
