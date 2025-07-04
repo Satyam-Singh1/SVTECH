@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import About from './pages/About'
 import Services from './pages/Services'
 import Portfolio from './pages/Portfolio'
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         </section>
         <Footer />
       </div>
+      <Toaster/>
     </>
   )
 }

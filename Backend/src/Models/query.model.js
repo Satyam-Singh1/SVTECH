@@ -17,11 +17,6 @@ const querySchema = new mongoose.Schema({
     required: true,
     trim: true
    },
-   phone:{
-    type: String,
-    required: true,
-    trim: true
-   }
 },{timestamps: true});
 
 const Query = mongoose.model("Query", querySchema);

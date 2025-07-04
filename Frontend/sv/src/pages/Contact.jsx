@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useQueryStore } from "../store/useQueryStore.js";
 const initialState = {
     name: "",
     email: "",
@@ -10,7 +10,7 @@ const Contact = () => {
     const [form, setForm] = useState(initialState);
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
-
+    const {sendQuery} = useQueryStore();
     // Simple validation
     const validate = () => {
         const newErrors = {};
@@ -29,12 +29,18 @@ const Contact = () => {
         setErrors({ ...errors, [e.target.name]: undefined });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         const validationErrors = validate();
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;
+        }
+        try {
+            await sendQuery(form);
+            
+        } catch (error) {
+            
         }
         setSubmitted(true);
         setForm(initialState);
