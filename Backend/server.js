@@ -1,24 +1,30 @@
 import express from "express";
 import dotenv from "dotenv";
-import queryRoutes from "./src/Routes/queryRoute.js"
+import queryRoutes from "./src/Routes/queryRoute.js";
 import { connectDB } from "./src/Utils/dataBase.js";
 import cors from "cors";
-const app = express();
-dotenv.config();
-app.use(express.json());
-app.use(cors({
-    origin: "http://localhost:5173", // Adjust this to your frontend URL
-    credentials:true
-}))
 
+dotenv.config();
+const app = express();
+
+// Replace localhost with env variable for production deployment
+app.use(cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    credentials: true
+}));
+
+app.use(express.json());
+
+// Routes
+app.use("/api/query", queryRoutes);
+
+// Connect to DB first, then start server
 const PORT = process.env.PORT || 3000;
 
-
-app.use("/api/query",queryRoutes);
-
-
-
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-    connectDB();
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`✅ Server running on port ${PORT}`);
+    });
+}).catch(err => {
+    console.error("❌ Failed to connect to DB:", err);
 });
