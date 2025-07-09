@@ -4,10 +4,12 @@ import queryRoutes from "./src/Routes/queryRoute.js";
 import { connectDB } from "./src/Utils/dataBase.js";
 import cors from "cors";
 
+// Load environment variables
 dotenv.config();
+
 const app = express();
 
-// Replace localhost with env variable for production deployment
+// CORS configuration (use frontend URL from env)
 app.use(cors({
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
     credentials: true
@@ -18,11 +20,12 @@ app.use(express.json());
 // Routes
 app.use("/api/query", queryRoutes);
 
-// Connect to DB first, then start server
+// Define PORT
 const PORT = process.env.PORT || 3000;
 
+// Connect DB, then start server (important for Render)
 connectDB().then(() => {
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
         console.log(`✅ Server running on port ${PORT}`);
     });
 }).catch(err => {
